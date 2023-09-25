@@ -1,11 +1,15 @@
 export interface AppProps {
   name: string
-  buttonCallback: () => void
+  buttonCallback?: () => void
 }
 
 export function App(props: AppProps) {
 
   console.log('render')
+
+  /** 
+   * TODO: Add some navigation
+   */
 
   return (
     <div>
