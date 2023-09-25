@@ -2,7 +2,7 @@ import 'vite/modulepreload-polyfill'
 
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import './index.css'
 import { 
   // App,
@@ -27,7 +27,7 @@ declare global {
 }
 
 
-const router = createBrowserRouter([
+const router = createMemoryRouter([
   {
     path: '/',
     element: <Root />,
