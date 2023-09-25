@@ -1,3 +1,5 @@
+import 'vite/modulepreload-polyfill'
+
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -66,7 +68,7 @@ const router = createBrowserRouter([
 function renderWidget(
   // {name, buttonCallback}: AppProps
   ) {
-  ReactDOM.createRoot(document.getElementById('root')!).render(
+  ReactDOM.createRoot(document.getElementById('widget-root')!).render(
     <React.StrictMode>
       {/* <App name={name} buttonCallback={buttonCallback}/> */}
       <RouterProvider router={router}/>
