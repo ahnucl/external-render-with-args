@@ -6,12 +6,20 @@ import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 export default defineConfig({
   plugins: [
     react(),
-    cssInjectedByJsPlugin(),
+    cssInjectedByJsPlugin({
+      jsAssetsFilterFunction: (outputChunk) => {
+        console.log('TESTE' , `\n${outputChunk.fileName}\n`)
+        return !!outputChunk.fileName.match(/assets\/main-.*\.js/)
+      }
+    }),
   ],
   build: {
     manifest: true,
     rollupOptions: {
-      input: '/src/main.tsx'
+      input: [
+        '/index.html',
+        '/src/main.tsx'
+      ]
     }
   }
 })

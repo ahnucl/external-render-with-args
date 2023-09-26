@@ -1,5 +1,5 @@
 export interface AppProps {
-  name: string
+  name?: string
   buttonCallback?: () => void
 }
 

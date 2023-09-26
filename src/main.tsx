@@ -2,7 +2,10 @@ import 'vite/modulepreload-polyfill'
 
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createMemoryRouter, RouterProvider } from "react-router-dom";
+import { 
+  createMemoryRouter,
+  // createBrowserRouter,
+  RouterProvider } from "react-router-dom";
 import './index.css'
 import { 
   // App,
@@ -15,7 +18,7 @@ import Contact, {
 } from './routes/contact.jsx';
 import EditContact, { action as editAction} from './routes/edit.jsx';
 import { action as destroyAction } from "./routes/destroy.jsx";
-import Index from "./routes/index.jsx";
+import Index, {loader as indexLoader} from "./routes/index.jsx";
 
 declare global {
   interface Window {
@@ -40,7 +43,8 @@ const router = createMemoryRouter([
         children: [
           {
             index: true,
-            element: <Index />
+            element: <Index />,
+            loader: indexLoader
           },
           {
             path: 'contacts/:contactId',
@@ -66,8 +70,12 @@ const router = createMemoryRouter([
 ])
 
 function renderWidget(
-  // {name, buttonCallback}: AppProps
+  { name }: AppProps
   ) {
+  if(name) {
+    console.log('GOT NAME:', name)
+  }
+
   ReactDOM.createRoot(document.getElementById('widget-root')!).render(
     <React.StrictMode>
       {/* <App name={name} buttonCallback={buttonCallback}/> */}
@@ -78,8 +86,8 @@ function renderWidget(
   // window.renderWidget = () => console.log('already called') // Maybe not needed - just re-renders
 }
 
-window.renderWidget = renderWidget
 
+window.renderWidget = renderWidget
 
 /**
  * On NextJS it would probably be this: 
